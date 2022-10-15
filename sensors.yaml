@@ -1,0 +1,73 @@
+- platform: command_line
+  name: TV last session
+  command: /config/scripts/device_time.py --last-session HomeAssistant state entity_id samsung_7_series_65
+  unit_of_measurement: minutes
+  scan_interval: 60
+
+- platform: command_line
+  name: PS5 last session
+  command: /config/scripts/device_time.py --last-session HomeAssistant state entity_id ps5
+  unit_of_measurement: minutes
+  scan_interval: 60
+
+- platform: command_line
+  name: XBOX last session
+  command: /config/scripts/device_time.py --last-session HomeAssistant state entity_id xbox
+  unit_of_measurement: minutes
+  scan_interval: 60
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_battery_percentage
+  name: "Growatt Inverter Battery Percentage Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 5
+  sampling_size: 50
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_charge_today
+  name: "Growatt Inverter Charged Today Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 15
+  sampling_size: 1
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_grid_charged_today
+  name: "Growatt Inverter Grid Charged Today Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 15
+  sampling_size: 1
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_grid_discharged_today
+  name: "Growatt Inverter Grid Discharged Today Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 15
+  sampling_size: 1
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_load_consumption
+  name: "Growatt Inverter Load Consumption Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 5
+  sampling_size: 1
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_load_consumption_today
+  name: "Growatt Inverter Load Consumption Today Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 15
+  sampling_size: 1
+
+- platform: statistics
+  entity_id: sensor.dxe5a22100_load_percentage
+  name: "Growatt Inverter Load Percentage Statistic"
+  state_characteristic: mean
+  max_age:
+    minutes: 5
+  sampling_size: 1

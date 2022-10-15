@@ -1,0 +1,91 @@
+sensor:
+  - name: "Ender3 PSU Switch"
+    state_topic: "stat/ender3_psu/POWER"
+
+  - name: "Ender5 PSU Switch"
+    state_topic: "stat/ender5_psu/POWER"
+
+  - name: "Ender5 PSU Switch"
+    state_topic: "stat/ender5_psu/POWER"
+
+  - name: "Inlet Real Power"
+    device_class: "power"
+    state_topic: "tele/inlet/realpower"
+    value_template: "{{ value_json.RealPower.Avg }}"
+    unit_of_measurement: "W"
+    availability:
+      - topic: "stat/powermeter/STATUS"
+        payload_available: "ONLINE"
+        payload_not_available: "OFFLINE"
+    availability_mode: "latest"
+    json_attributes_topic: "tele/inlet/realpower"
+    json_attributes_template: "{{ value_json.RealPower | tojson }}"
+
+  - name: "Inlet Apparent Power"
+    device_class: "apparent_power"
+    state_topic: "tele/inlet/apparentpower"
+    value_template: "{{ value_json.ApparentPower.Avg }}"
+    unit_of_measurement: "Va"
+    availability:
+      - topic: "stat/powermeter/STATUS"
+        payload_available: "ONLINE"
+        payload_not_available: "OFFLINE"
+    availability_mode: "latest"
+    json_attributes_topic: "tele/inlet/apparentpower"
+    json_attributes_template: "{{ value_json.ApparentPower | tojson }}"
+
+  - name: "Inlet Rms Current"
+    device_class: "current"
+    state_topic: "tele/inlet/irms"
+    value_template: "{{ value_json.IRms.Avg }}"
+    unit_of_measurement: "mA"
+    availability:
+      - topic: "stat/powermeter/STATUS"
+        payload_available: "ONLINE"
+        payload_not_available: "OFFLINE"
+    availability_mode: "latest"
+    json_attributes_topic: "tele/inlet/irms"
+    json_attributes_template: "{{ value_json.IRms | tojson }}"
+
+  - name: "Inlet Rms Voltage"
+    device_class: "voltage"
+    state_topic: "tele/inlet/vrms"
+    value_template: "{{ value_json.VRms.Avg }}"
+    unit_of_measurement: "V"
+    availability:
+      - topic: "stat/powermeter/STATUS"
+        payload_available: "ONLINE"
+        payload_not_available: "OFFLINE"
+    availability_mode: "latest"
+    json_attributes_topic: "tele/inlet/vrms"
+    json_attributes_template: "{{ value_json.VRms | tojson }}"
+
+  - name: "Inlet Power Factor"
+    device_class: "power_factor"
+    state_topic: "tele/inlet/powerfactor"
+    value_template: "{{ value_json.PowerFactor.Avg }}"
+    unit_of_measurement: "%"
+    availability:
+      - topic: "stat/powermeter/STATUS"
+        payload_available: "ONLINE"
+        payload_not_available: "OFFLINE"
+    availability_mode: "latest"
+    json_attributes_topic: "tele/inlet/powerfactor"
+    json_attributes_template: "{{ value_json.PowerFactor | tojson }}"
+
+switch:
+  - name: "Ender5 PSU Switch" # Choose an easy-to-recognize name
+    state_topic: "stat/ender5_psu/POWER" # Topic to read the current state
+    command_topic: "cmnd/ender5_psu/POWER" # Topic to publish commands
+    qos: 1
+    payload_on: "ON" # or "on", depending on your MQTT device
+    payload_off: "OFF" # or "off", depending on your MQTT device
+    retain: true # or false if you want to wait for changes
+
+  - name: "Ender3 PSU Switch" # Choose an easy-to-recognize name
+    state_topic: "stat/ender3_psu/POWER" # Topic to read the current state
+    command_topic: "cmnd/ender3_psu/POWER" # Topic to publish commands
+    qos: 1
+    payload_on: "ON" # or "on", depending on your MQTT device
+    payload_off: "OFF" # or "off", depending on your MQTT device
+    retain: true # or false if you want to wait for changes

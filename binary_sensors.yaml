@@ -1,0 +1,14 @@
+- platform: command_line
+  name: ps5
+  command: /config/scripts/ps5.py -b -q 192.168.8.12
+  scan_interval: 60
+- platform: ping
+  host: 192.168.8.2
+  name: tplink_router
+  count: 5
+  scan_interval: 60
+- platform: ping
+  host: 192.168.8.1
+  name: rain_router
+  count: 5
+  scan_interval: 60
